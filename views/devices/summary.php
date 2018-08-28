@@ -61,6 +61,7 @@ $anchors = array();
 foreach ($devices as $device => $details) {
     $device_encoded = strtr(base64_encode($device),  '+/=', '-_.');
 
+
     // Skip removable drives
     if ($details['removable'])
         continue;
@@ -71,9 +72,10 @@ foreach ($devices as $device => $details) {
     $identifier = $details['identifier'];
 
     $item['title'] = $device;
-    $item['action'] = '/app/storage/devices/view/'.$device;
+    $item['action'] = '/app/storage/devices/view/'.$storage;
     $item['anchors'] = button_set(
         array(anchor_custom('/app/storage/devices/view/' . $device_encoded, lang('base_view_details')))
+        //array(anchor_custom('/app/storage/devices/view/' . $device_encoded, lang('create_device')))
     );
     $item['details'] = array(
         $device,

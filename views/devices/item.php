@@ -100,7 +100,7 @@ foreach ($details['partitioning']['partitions'] as $id => $partition_info) {
         $mount = $partition_info['mount_point'];
 
     $item['title'] = $device;
-    $item['action'] = '/app/storage/devices/view/'.$device;
+    $item['action'] = '/app/storage/devices/view/'.$storage;
     $item['anchors'] = button_set(array());
     $item['details'] = array(
         $id,
