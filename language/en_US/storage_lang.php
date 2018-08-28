@@ -37,3 +37,6 @@ $lang['storage_store'] = 'Store';
 $lang['storage_swap'] = 'Swap';
 $lang['storage_user_guide_preamble'] = 'By default, the /store directory is used for mounting storage. For more information or just general tips and tricks, please follow the link to User Guide.';
 $lang['storage_wizard_help'] = 'If you plan on storing a significant amount of data on a separate partition or storage target, please stop right here and take a moment to read the help in the sidebar!  If you skip this step, it becomes a big chore to move data around later.';
+$lang['options']='options';
+$lang['
+powered_by']='powered by';
