@@ -100,7 +100,7 @@ foreach ($details['partitioning']['partitions'] as $id => $partition_info) {
         $mount = $partition_info['mount_point'];
 
     $item['title'] = $device;
-    $item['action'] = '';
+    $item['action'] = '/app/storage/devices/view/'.$device;
     $item['anchors'] = button_set(array());
     $item['details'] = array(
         $id,
@@ -115,7 +115,7 @@ foreach ($details['partitioning']['partitions'] as $id => $partition_info) {
 
 sort($items);
 
-$options['no_action'] = TRUE;
+$options['no_action'] = FALSE;
 
 echo summary_table(
     lang('storage_partitions'),
