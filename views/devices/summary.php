@@ -71,7 +71,7 @@ foreach ($devices as $device => $details) {
     $identifier = $details['identifier'];
 
     $item['title'] = $device;
-    $item['action'] = '';
+    $item['action'] = '/app/storage/devices/view/'.$device;
     $item['anchors'] = button_set(
         array(anchor_custom('/app/storage/devices/view/' . $device_encoded, lang('base_view_details')))
     );
