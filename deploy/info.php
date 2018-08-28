@@ -7,10 +7,21 @@
 $app['basename'] = 'storage';
 $app['version'] = '2.5.0';
 $app['vendor'] = 'ClearFoundation';
+$app['version']='2.5.1';
 $app['packager'] = 'ClearFoundation';
 $app['license'] = 'GPLv3';
 $app['license_core'] = 'LGPLv3';
 $app['description'] = lang('storage_app_description');
+$app['powered_by']= array(
+    'packages' => array(
+        'storage' => array(
+        'name' =>'itot' ,
+        'version'=>'2.5.1',
+        'vendor'=>'itot',
+        'url'=>'', 
+        ), 
+    ),
+);
 
 /////////////////////////////////////////////////////////////////////////////
 // App name and categories
