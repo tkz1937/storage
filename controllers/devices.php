@@ -66,6 +66,7 @@ class Devices extends ClearOS_Controller
 
         try {
             $data['devices'] = $this->storage_device->get_devices();
+
             $found = $this->storage_device->find_obvious_storage_device();
         } catch (Exception $e) {
             $this->page->view_exception($e);
@@ -112,7 +113,7 @@ class Devices extends ClearOS_Controller
         if ($this->input->post('submit')) {
             try {
                 $this->storage_device->run_create_data_drive($device_decoded, $this->input->post('type'));
-
+                redirect('/storage/add');
                 $this->page->set_status_added();
             } catch (Exception $e) {
                 $this->page->view_exception($e);
