@@ -90,7 +90,7 @@ $anchors = array();
 echo form_open('storage');
 
 echo form_header(lang('storage_device'));
-echo anchor_add('/app/storage/devices/view/'.$device);
+echo anchor_add('/app/storage/devices/create_data_drive/'.$device);
 
 
 foreach ($devices as $device=>$details) {
