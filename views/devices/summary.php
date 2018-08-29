@@ -58,24 +58,66 @@ $anchors = array();
 // Items
 ///////////////////////////////////////////////////////////////////////////////
 
-foreach ($devices as $device => $details) {
+// foreach ($devices as $device => $details) {
+//     $device_encoded = strtr(base64_encode($device),  '+/=', '-_.');
+
+
+//     // Skip removable drives
+//     if ($details['removable'])
+//         continue;
+
+//     // TODO: discuss icon strategy
+//     $in_use_icon = ($details['in_use']) ? '<span class="theme-icon-ok">&nbsp;</span>' : '';
+//     $is_store = ($details['is_store']) ? '<span class="theme-icon-ok">&nbsp;</span>' : '';
+//     $identifier = $details['identifier'];
+
+//     $item['title'] = $device;
+//     $item['action'] = '/app/storage/devices/view/'.$device;
+//     $item['anchors'] = button_set(
+//         array(anchor_custom('/app/storage/devices/view/' . $device_encoded, lang('base_view_details')))
+//         //array(anchor_custom('/app/storage/devices/view/' . $device_encoded, lang('create_device')))
+//     );
+//     $item['details'] = array(
+//         $device,
+//         $identifier,
+//         $details['size'] . ' ' . $details['size_units'],
+//         $in_use_icon,
+//         $is_store,
+//     );
+
+//     $items[] = $item;
+// }
+echo form_open('storage');
+
+echo form_header(lang('storage_device'));
+echo anchor_add('/app/storage/devices/view/'.$device);
+
+
+foreach ($devices as $device=>$details) {
     $device_encoded = strtr(base64_encode($device),  '+/=', '-_.');
 
 
     // Skip removable drives
     if ($details['removable'])
         continue;
-
-    // TODO: discuss icon strategy
-    $in_use_icon = ($details['in_use']) ? '<span class="theme-icon-ok">&nbsp;</span>' : '';
+    $state = ($details['edit']) ? 'edit' : 'edit';
+    $add=($details['add']) ? 'add':'add';
+    $add_anchor='anchor_'.$add;
+   
+    $state_anchor = 'anchor_' . $state;
     $is_store = ($details['is_store']) ? '<span class="theme-icon-ok">&nbsp;</span>' : '';
     $identifier = $details['identifier'];
 
     $item['title'] = $device;
-    $item['action'] = '/app/storage/devices/view/'.$storage;
+    
+
+    //$item['current_state'] = (bool)$details['edit'];
+    $item['action'] = '/app/storage/devices/view/' . $device;
     $item['anchors'] = button_set(
-        array(anchor_custom('/app/storage/devices/view/' . $device_encoded, lang('base_view_details')))
-        //array(anchor_custom('/app/storage/devices/view/' . $device_encoded, lang('create_device')))
+        array(
+            $state_anchor('/app/storage/devices/view/' . $state . '/'.$device, 'high', $options),
+        
+            anchor_custom('/app/storage/devices/view/' . $device_encoded, lang('base_view_details')))
     );
     $item['details'] = array(
         $device,
@@ -84,6 +126,7 @@ foreach ($devices as $device => $details) {
         $in_use_icon,
         $is_store,
     );
+
 
     $items[] = $item;
 }
@@ -102,7 +145,7 @@ sort($items);
 
 $options = array(
     'id' => 'storage_summary',
-    'responsive' => array(1 => 'none')
+    'responsive' => array(1 => 'yes')
 );
 echo summary_table(
     lang('storage_devices'),
