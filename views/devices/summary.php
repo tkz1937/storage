@@ -101,8 +101,8 @@ foreach ($devices as $device=>$details) {
     if ($details['removable'])
         continue;
     $state = ($details['edit']) ? 'edit' : 'edit';
-    $add=($details['add']) ? 'add':'add';
-    $add_anchor='anchor_'.$add;
+    $delete=($details['add']) ? 'delete':'delete';
+    $delete_anchor='anchor_'.$delete;
    
     $state_anchor = 'anchor_' . $state;
     $is_store = ($details['is_store']) ? '<span class="theme-icon-ok">&nbsp;</span>' : '';
@@ -116,7 +116,8 @@ foreach ($devices as $device=>$details) {
     $item['anchors'] = button_set(
         array(
             $state_anchor('/app/storage/devices/view/' . $state . '/'.$device, 'high', $options),
-        
+            $delete_anchor('/app/storage/devices/view/'.$delete.'/'.$device,'high',$options),
+            
             anchor_custom('/app/storage/devices/view/' . $device_encoded, lang('base_view_details')))
     );
     $item['details'] = array(
